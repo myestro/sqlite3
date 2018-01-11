@@ -4,6 +4,9 @@ project(sqlite LANGUAGES C CXX)
 set(sqlite_VERSION 3.21.0)
 
 add_library(${PROJECT_NAME} SHARED sqlite3.c sqlite3.h sqlite3ext.h shell.c)
+if (WIN32)
+  set_target_properties(${PROJECT_NAME} PROPERTIES WINDOWS_EXPORT_ALL_SYMBOLS TRUE)
+endif()
 
 include(GenerateExportHeader)
 
